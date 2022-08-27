@@ -6,7 +6,7 @@ public class LinkList {
     public Node tail;
     public int size;
 
-    private class Node{
+     class Node{
         public int data;
         public Node next;
 

@@ -3,7 +3,7 @@ import java.util.Stack;
 
 public class BinaryTrees {
 
-    private static class Node{
+     static class Node{
         Node left;
         Node right;
         int data;
