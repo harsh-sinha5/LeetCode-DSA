@@ -126,4 +126,18 @@ public class BinaryTrees {
         return 1+ Math.max(height(root.left), height(root.right));
     }
 
+    static int countGoodNodes(Node root){
+         if(root == null) return 0;
+         return dfs(root, root.data);
+    }
+
+    static int dfs(Node root, int max){
+         if(root == null) return 0;
+         max = Math.max(max, root.data);
+         if(max <= root.data)
+             return 1 + dfs(root.left, max) + dfs(root.right, max);
+         else
+             return dfs(root.left, max) + dfs(root.right, max);
+     }
+
 }
