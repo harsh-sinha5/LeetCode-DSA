@@ -13,18 +13,18 @@ public class Practice {
 
     public static void main(String[] args) {
 
-        Set<Example> exampleSet = new HashSet<>();
-        //Sample2 sample2 = new Example1();
-        //sample2.same();
-        Example1 example1 = new Example1();
-        exampleSet.add(new Example());
-        exampleSet.add(new Example());
-        exampleSet.add(new Example());
-        List<Example> list = new ArrayList<>();
-        list.add(new Example("Vinay"));
-        list.add(new Example("Harsh"));
-        list.add(new Example("Vinit"));
-        list.forEach(System.out::println);
+//        Set<Example> exampleSet = new HashSet<>();
+//        //Sample2 sample2 = new Example1();
+//        //sample2.same();
+//        Example1 example1 = new Example1();
+//        exampleSet.add(new Example());
+//        exampleSet.add(new Example());
+//        exampleSet.add(new Example());
+//        List<Example> list = new ArrayList<>();
+//        list.add(new Example("Vinay"));
+//        list.add(new Example("Harsh"));
+//        list.add(new Example("Vinit"));
+//        list.forEach(System.out::println);
 
         double d = 1.234;
         int[] arr = {2, 5, -4, 6};
@@ -50,6 +50,8 @@ public class Practice {
         System.out.println("Converted to Int:" + convertStringToInt("1234"));
         int[] arr6 = twoSum(new int[]{1, 2, 3, 4, 5}, 6);
         System.out.println("first element of two sum:" + arr6[0] + " second element:" + arr6[1]);
+        int[] arr7 = twoSumSorted(new int[]{1, 2, 3, 4, 5}, 6);
+        System.out.println("first element of two sum:" + arr7[0] + " second element:" + arr7[1]);
         ExecutorService executorService = Executors.newFixedThreadPool(4);
         Future<Integer> integerFuture = executorService.submit(() -> new Random().nextInt());
         CompletableFuture<Integer> intCompletableFuture = CompletableFuture.supplyAsync(() -> new Random().nextInt());
@@ -224,7 +226,7 @@ public class Practice {
         for(int i = 0; i < arr.length; i++ ){
             int delta = target - arr[i];
             if(integerMap.containsKey(delta)){
-                return new int[]{i, integerMap.get(delta)};
+                return new int[]{arr[i], delta};
             }
             integerMap.put(arr[i], i);
         }
@@ -294,4 +296,20 @@ public class Practice {
             quickSort(arr, low, p - 1);
         }
     }
+
+    static int[] twoSumSorted(int[] arr, int target){
+        int start = 0, end = arr.length-1;
+        while (start<=end){
+            if (arr[start] + arr[end] < target)
+                start++;
+            else if (arr[start] + arr[end] > target)
+                end--;
+            else
+                return new int[]{arr[start], arr[end]};
+        }
+
+       return new int[]{};
+    }
+
+
 }
