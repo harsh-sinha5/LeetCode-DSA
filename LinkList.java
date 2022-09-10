@@ -10,6 +10,8 @@ public class LinkList {
         public int data;
         public Node next;
 
+        public Node previous;
+
         public Node(){}
 
         public Node(int data){
@@ -170,6 +172,49 @@ public class LinkList {
         }
         if(two == null) return one;
         return dummy.next;
+    }
+    static Node singlyToDoubly(Node head){
+         Node temp = head;
+         Node prev = null;
+         while(temp != null){
+             temp.previous = prev;
+             prev = temp;
+             temp = temp.next;
+
+         }
+         return head;
+    }
+
+//    print 61,25,43 asked in MMT
+    public static void printFirstLastAlt(Node head){
+         Node temp = singlyToDoubly(head);
+         Node tail = head;
+         while(tail.next != null){
+             tail = tail.next;
+         }
+         Node curr = head;
+         while (curr != tail ){
+             if(temp.data % 2 == 0)
+                System.out.println(temp.data +""+ tail.data);
+             else
+                 System.out.println(tail.data+""+temp.data);
+             curr = temp;
+             temp = temp.next;
+             tail = tail.previous;
+
+         }
+    }
+}
+class LLTest{
+    public static void main(String[] args) {
+        LinkList linkList = new LinkList();
+        LinkList.Node head = null;
+        for (int i = 0; i < 6; i++){
+            head =linkList.insert(head, i, i+1);
+        }
+        linkList.traverse(head);
+        linkList.printFirstLastAlt(head);
+
     }
 }
 
